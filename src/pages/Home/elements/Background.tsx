@@ -1,8 +1,8 @@
 import styled from "styled-components";
+import { mobile } from "styles/breakpoints";
 import homeBG from "assets/images/homeBG.jpg";
-import homeSmallBG from "assets/images/homeSmallBG.jpg";
 
-export const Background = styled.main`
+export const Background = styled.div`
   background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
     url(${homeBG});
   background-size: cover;
@@ -12,8 +12,8 @@ export const Background = styled.main`
   z-index: -1;
   width: 100%;
 
-  @media (max-width: 30rem) {
+  @media ${mobile} {
     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-      url(${homeSmallBG});
+      url(${homeBG});
   }
 `;
