@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import burger_menu from "assets/icons/burger_menu.svg";
 import close_button from "assets/icons/close_button.svg";
 
@@ -12,10 +12,12 @@ export const MainHeader: React.FC = () => {
   const { isMobile } = useQuery();
   const [menuOpen, toggleMenu] = useState(false);
 
+  const location = useLocation().pathname;
+
   const showMenu = () => toggleMenu(!menuOpen);
 
   return (
-    <NavSection width="100%">
+    <NavSection location={location} width="100%">
       <FlexWrapperStyled
         justifyContent={isMobile ? "end" : "center"}
         alignItems="center"
@@ -40,16 +42,16 @@ export const MainHeader: React.FC = () => {
             alignItems="center"
             padding={isMobile ? "0 2rem 0 0" : ""}
           >
-            <StyledLink to="/">
+            <StyledLink to="/" onClick={showMenu}>
               <NavItem>Home</NavItem>
             </StyledLink>
-            <StyledLink to="/">
+            <StyledLink to="/studies" onClick={showMenu}>
               <NavItem>Studies</NavItem>
             </StyledLink>
-            <StyledLink to="/">
+            <StyledLink to="/" onClick={showMenu}>
               <NavItem>Privacy Policy</NavItem>
             </StyledLink>
-            <StyledLink to="/">
+            <StyledLink to="/" onClick={showMenu}>
               <NavItem>Contacts</NavItem>
             </StyledLink>
           </FlexWrapper>
@@ -59,8 +61,8 @@ export const MainHeader: React.FC = () => {
   );
 };
 
-const NavSection = styled(Box)`
-  background: transparent;
+const NavSection = styled(Box)<{ location?: string }>`
+  background: ${({ location }) => (location !== "/" ? black : "transparent")};
   height: 4rem;
   position: absolute;
 `;
@@ -90,15 +92,17 @@ const StyledBox = styled(Box)<{ menuOpen?: boolean }>`
 
 const NavItem = styled(Paragraph)`
   color: ${white};
+  font-weight: 900;
 
   @media ${mobile} {
     font-size: 1.4rem;
-    font-weight: 900;
+    
   }
 `;
 
 const StyledLink = styled(NavLink)`
   text-decoration: none;
+  text-align: center;
 
   &:not(:first-child) {
     margin-left: 2rem;

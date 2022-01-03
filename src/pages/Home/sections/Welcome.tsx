@@ -17,7 +17,7 @@ export const Welcome: React.FC = () => {
           come
         </H1>
         <PrimaryButton>
-          <StyledLink to="/">Get Started</StyledLink>
+          <StyledLink to="/studies">Get Started</StyledLink>
         </PrimaryButton>
       </FlexWrapper>
     </FlexWrapperStyled>
