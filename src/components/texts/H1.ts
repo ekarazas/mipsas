@@ -3,9 +3,9 @@ import { mobile } from "styles/breakpoints";
 import { TextBaseBold } from "./TextBase";
 
 export const H1 = styled(TextBaseBold).attrs({ as: "h1" })`
-  font-size: 3rem;
+  font-size: 5rem;
 
   @media ${mobile} {
-    font-size: 1.69rem;
+    font-size: 3rem;
   }
 `;

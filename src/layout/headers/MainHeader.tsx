@@ -6,7 +6,7 @@ import close_button from "assets/icons/close_button.svg";
 
 import { mobile, useQuery } from "styles/breakpoints";
 import { black, primaryLight, white } from "styles/colors";
-import { Box, Container, FlexWrapper, Paragraph } from "components";
+import { Box, FlexWrapper, Paragraph } from "components";
 
 export const MainHeader: React.FC = () => {
   const { isMobile } = useQuery();
@@ -38,7 +38,7 @@ export const MainHeader: React.FC = () => {
           <FlexWrapper
             flexDirection={isMobile ? "column" : ""}
             alignItems="center"
-            padding="0 2rem 0 0"
+            padding={isMobile ? "0 2rem 0 0" : ""}
           >
             <StyledLink to="/">
               <NavItem>Home</NavItem>
