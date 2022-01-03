@@ -20,3 +20,4 @@ export * from "./wrappers/ContainerSmall";
 export * from "./wrappers/FlexWrapper";
 export * from "./wrappers/SectionWrapper";
 export * from "./wrappers/Box";
+export * from "./wrappers/ContentFrameSmall";

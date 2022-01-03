@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import burger_menu from "assets/icons/burger_menu.svg";
 import close_button from "assets/icons/close_button.svg";
 
@@ -12,12 +12,10 @@ export const MainHeader: React.FC = () => {
   const { isMobile } = useQuery();
   const [menuOpen, toggleMenu] = useState(false);
 
-  const location = useLocation().pathname;
-
   const showMenu = () => toggleMenu(!menuOpen);
 
   return (
-    <NavSection location={location} width="100%">
+    <NavSection width="100%">
       <FlexWrapperStyled
         justifyContent={isMobile ? "end" : "center"}
         alignItems="center"
@@ -61,10 +59,9 @@ export const MainHeader: React.FC = () => {
   );
 };
 
-const NavSection = styled(Box)<{ location?: string }>`
-  background: ${({ location }) => (location !== "/" ? black : "transparent")};
+const NavSection = styled(Box)`
+  background: transparent;
   height: 4rem;
-  position: absolute;
 `;
 
 const FlexWrapperStyled = styled(FlexWrapper)`
@@ -96,7 +93,6 @@ const NavItem = styled(Paragraph)`
 
   @media ${mobile} {
     font-size: 1.4rem;
-    
   }
 `;
 

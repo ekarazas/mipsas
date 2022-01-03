@@ -1,7 +1,12 @@
 import React from "react";
+import { CardSection } from "./sections/CardSection";
 
 const Studies: React.FC = () => {
-  return <></>;
+  return (
+    <>
+      <CardSection />
+    </>
+  );
 };
 
 export default Studies;

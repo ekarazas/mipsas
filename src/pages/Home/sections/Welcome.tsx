@@ -25,7 +25,7 @@ export const Welcome: React.FC = () => {
 };
 
 const FlexWrapperStyled = styled(FlexWrapper)`
-  height: 100vh;
+  height: calc(100vh - 4rem);
 `;
 
 const StyledLink = styled(NavLink)`
