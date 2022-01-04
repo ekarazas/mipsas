@@ -1,8 +1,10 @@
-import React from "react";
+import { StrictMode } from "react";
 import ReactDOM from "react-dom";
 import "normalize.css";
-import { createGlobalStyle } from "styled-components";
 import App from "./App";
+import { storeConfig } from "state/store";
+import { Provider } from "react-redux";
+import { createGlobalStyle } from "styled-components";
 import { primaryBG } from "styles/colors";
 
 const GlobalStyle = createGlobalStyle`
@@ -22,9 +24,11 @@ html {
 `;
 
 ReactDOM.render(
-  <React.StrictMode>
+  <StrictMode>
     <GlobalStyle />
-    <App />
-  </React.StrictMode>,
+    <Provider store={storeConfig().store}>
+      <App />
+    </Provider>
+  </StrictMode>,
   document.getElementById("root")
 );
