@@ -27,6 +27,11 @@ export const StudyCard: React.FC<Props> = ({
 
   return (
     <Card>
+      <FlexWrapperHover justifyContent="center" alignItems="center">
+        <H4 color={white} fontWeight={700}>
+          More Info...
+        </H4>
+      </FlexWrapperHover>
       <Image src={studyThumbnail} alt={studyThumbnail} />
       <CardContent flexDirection="column" justifyContent="space-between">
         <H4 margin="0 0 0.5rem">{name}</H4>
@@ -42,11 +47,20 @@ export const StudyCard: React.FC<Props> = ({
   );
 };
 
+const FlexWrapperHover = styled(FlexWrapper)`
+  background-color: rgba(0, 0, 0, 0.6);
+  display: none;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+`;
+
 const Card = styled(ContentFrameSmall)`
   background: ${white};
   cursor: pointer;
   margin: 0;
   margin-bottom: 2rem;
+  position: relative;
   width: calc(33.33% - 4rem / 3);
 
   &:not(:nth-child(3n)) {
@@ -77,6 +91,10 @@ const Card = styled(ContentFrameSmall)`
   &:hover {
     box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
       rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  }
+
+  &:hover ${FlexWrapperHover} {
+    display: flex;
   }
 `;
 
