@@ -2,18 +2,40 @@ import styled from "styled-components";
 
 import { ContentFrameSmall, FlexWrapper, H4, TextWrapper } from "components";
 import { mobile, tablet } from "styles/breakpoints";
-import { black, white } from "styles/colors";
+import { green, red, white, yellow } from "styles/colors";
 
-export const StudyCard: React.FC = () => {
+type Props = {
+  updatedAt: string;
+  name: string;
+  statusKey: string;
+  studyThumbnail: string;
+};
+
+export const StudyCard: React.FC<Props> = ({
+  updatedAt,
+  name,
+  statusKey,
+  studyThumbnail,
+}) => {
+  const slicedData = updatedAt.slice(0, 10) + " " + updatedAt.slice(11, 16);
+  const status =
+    statusKey === "draft"
+      ? "Draft"
+      : statusKey === "finished"
+      ? "Finished"
+      : "Pending";
+
   return (
     <Card>
-      <Image src="https://picsum.photos/200/300" alt="hello" />
+      <Image src={studyThumbnail} alt={studyThumbnail} />
       <CardContent flexDirection="column" justifyContent="space-between">
-        <H4 margin="0 0 0.5rem">Hello WheelyBug</H4>
-        <FlexWrapper justifyContent="space-between">
-          <UpdateDate>Last Update 2020-02-10</UpdateDate>
-
-          <Status>Draft</Status>
+        <H4 margin="0 0 0.5rem">{name}</H4>
+        <FlexWrapper justifyContent="space-between" alignItems="center">
+          <UpdateDate>
+            <TextWrapper fontWeight={700}>Last Update </TextWrapper>
+            {slicedData}
+          </UpdateDate>
+          <Status status={status}>{status}</Status>
         </FlexWrapper>
       </CardContent>
     </Card>
@@ -24,15 +46,20 @@ const Card = styled(ContentFrameSmall)`
   background: ${white};
   cursor: pointer;
   margin: 0;
-  margin-bottom: 1rem;
-  width: calc(33.33% - 2rem / 3);
+  margin-bottom: 2rem;
+  width: calc(33.33% - 4rem / 3);
 
   &:not(:nth-child(3n)) {
-    margin-right: 1rem;
+    margin-right: 2rem;
   }
 
   @media ${tablet} {
-    width: calc(50% - 3rem / 2);
+    width: calc(50% - 1.5rem / 2);
+    margin-bottom: 1.5rem;
+
+    &:not(:nth-child(3n)) {
+      margin-right: 0;
+    }
 
     &:not(:nth-child(2n)) {
       margin-right: 1.5rem;
@@ -64,11 +91,10 @@ const Image = styled.img`
 `;
 
 const UpdateDate = styled(TextWrapper)`
-  color: ${black};
   opacity: 50%;
 `;
 
-const Status = styled(TextWrapper)`
-  color: red;
-  opacity: 70%;
+const Status = styled(TextWrapper)<{ status?: string }>`
+  color: ${({ status }) =>
+    status === "Draft" ? red : status === "Finished" ? green : yellow};
 `;
