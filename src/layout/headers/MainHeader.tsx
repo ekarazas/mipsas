@@ -46,10 +46,10 @@ export const MainHeader: React.FC = () => {
             <StyledLink to="/studies" onClick={showMenu}>
               <NavItem>Studies</NavItem>
             </StyledLink>
-            <StyledLink to="/" onClick={showMenu}>
+            <StyledLink to="/privacy-policy" onClick={showMenu}>
               <NavItem>Privacy Policy</NavItem>
             </StyledLink>
-            <StyledLink to="/" onClick={showMenu}>
+            <StyledLink to="/contacts" onClick={showMenu}>
               <NavItem>Contacts</NavItem>
             </StyledLink>
           </FlexWrapper>

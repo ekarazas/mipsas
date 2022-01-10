@@ -1,17 +1,7 @@
 import { combineReducers, createReducer } from "@reduxjs/toolkit";
 import { setStudiesList } from "./actions";
 import { AppState } from "./store";
-
-interface Study {
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-  imagesCount: number;
-  name: string;
-  statusKey: string;
-  studyThumbnail: string;
-  tags: string | number[];
-}
+import { Study } from "../utils/types";
 
 const INITIAL_STUDIES_LIST: { studies: Array<Study> } = {
   studies: [],

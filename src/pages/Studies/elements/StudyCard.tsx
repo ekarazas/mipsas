@@ -3,21 +3,17 @@ import styled from "styled-components";
 import { ContentFrameSmall, FlexWrapper, H4, TextWrapper } from "components";
 import { mobile, tablet } from "styles/breakpoints";
 import { green, red, white, yellow } from "styles/colors";
+import { StudyCardProps } from "utils/types";
 
-type Props = {
-  updatedAt: string;
-  name: string;
-  statusKey: string;
-  studyThumbnail: string;
-};
-
-export const StudyCard: React.FC<Props> = ({
+export const StudyCard: React.FC<StudyCardProps> = ({
   updatedAt,
   name,
   statusKey,
   studyThumbnail,
 }) => {
-  const slicedData = updatedAt.slice(0, 10) + " " + updatedAt.slice(11, 16);
+  const slicedUpdateDate =
+    updatedAt.slice(0, 10) + " " + updatedAt.slice(11, 16);
+
   const status =
     statusKey === "draft"
       ? "Draft"
@@ -27,20 +23,15 @@ export const StudyCard: React.FC<Props> = ({
 
   return (
     <Card>
-      <FlexWrapperHover justifyContent="center" alignItems="center">
-        <H4 color={white} fontWeight={700}>
-          More Info...
-        </H4>
-      </FlexWrapperHover>
       <Image src={studyThumbnail} alt={studyThumbnail} />
       <CardContent flexDirection="column" justifyContent="space-between">
         <H4 margin="0 0 0.5rem">{name}</H4>
         <FlexWrapper justifyContent="space-between" alignItems="center">
           <UpdateDate>
             <TextWrapper fontWeight={700}>Last Update </TextWrapper>
-            {slicedData}
+            {slicedUpdateDate}
           </UpdateDate>
-          <Status status={status}>{status}</Status>
+          <Status statusColor={status}>{status}</Status>
         </FlexWrapper>
       </CardContent>
     </Card>
@@ -112,7 +103,11 @@ const UpdateDate = styled(TextWrapper)`
   opacity: 50%;
 `;
 
-const Status = styled(TextWrapper)<{ status?: string }>`
-  color: ${({ status }) =>
-    status === "Draft" ? red : status === "Finished" ? green : yellow};
+const Status = styled(TextWrapper)<{ statusColor?: string }>`
+  color: ${({ statusColor }) =>
+    statusColor === "Draft"
+      ? red
+      : statusColor === "Finished"
+      ? green
+      : yellow};
 `;
