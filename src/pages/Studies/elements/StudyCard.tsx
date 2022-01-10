@@ -4,8 +4,10 @@ import { ContentFrameSmall, FlexWrapper, H4, TextWrapper } from "components";
 import { mobile, tablet } from "styles/breakpoints";
 import { green, red, white, yellow } from "styles/colors";
 import { StudyCardProps } from "utils/types";
+import { Link } from "react-router-dom";
 
 export const StudyCard: React.FC<StudyCardProps> = ({
+  id,
   updatedAt,
   name,
   statusKey,
@@ -23,6 +25,13 @@ export const StudyCard: React.FC<StudyCardProps> = ({
 
   return (
     <Card>
+      <Link to={`/studies/${id}`}>
+        <FlexWrapperHover justifyContent="center" alignItems="center">
+          <H4 color={white} fontWeight={700}>
+            More Info...
+          </H4>
+        </FlexWrapperHover>
+      </Link>
       <Image src={studyThumbnail} alt={studyThumbnail} />
       <CardContent flexDirection="column" justifyContent="space-between">
         <H4 margin="0 0 0.5rem">{name}</H4>

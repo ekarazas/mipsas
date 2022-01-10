@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { setStudiesList } from "state/actions";
 import { studiesListSelector } from "state/reducers";
 
